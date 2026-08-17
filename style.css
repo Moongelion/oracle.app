@@ -262,3 +262,74 @@ body {
 
     color: #e8dfd2;
 }
+
+/* ____TAROT_____*/ 
+.tarot-screen {
+    display: none;
+
+    margin-top: 40px;
+}
+
+/*___TAROT CARDS___*/
+
+.tarot-card {
+    width: 220px;
+    height: 380px;
+
+    margin: 40px auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #8d7960;
+    border-radius: 8px;
+
+    background: #211e1a;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.4);
+
+    transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease;
+}
+
+.tarot-card__content {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 25px;
+
+    text-align: center;
+}
+
+.tarot-card__name {
+    font-size: 1.5rem;
+
+    letter-spacing: 0.15rem;
+
+    color: #e8dfd2;
+}
+
+.tarot-card.drawn {
+    animation: cardReveal 0.5s ease;
+}
+
+@keyframes cardReveal {
+
+    0% {
+        opacity: 0;
+        transform: translateY(15px) scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}

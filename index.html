@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -20,6 +20,8 @@
             Dice & Tarot
         </p>
 
+        <!-- MENU -->
+
         <section class="menu">
 
             <button class="menu__button" id="diceButton">
@@ -34,39 +36,71 @@
 
         </section>
 
+
+        <!-- SCREENS -->
+
+
+        <!-- DICE SCREEN -->
+
         <section class="dice-screen" id="diceScreen">
 
-    <button class="back-button" id="backFromDice">
-        ← Back
-    </button>
+            <button class="back-button" id="backFromDice">
+                ← Back
+            </button>
 
-<h2 id="diceTitle">D20</h2>
+            <h2 id="diceTitle">D20</h2>
 
-<div class="dice-options">
+            <div class="dice-options">
 
-    <button class="dice-option" data-sides="4">d4</button>
-    <button class="dice-option" data-sides="6">d6</button>
-    <button class="dice-option" data-sides="8">d8</button>
-    <button class="dice-option" data-sides="10">d10</button>
-    <button class="dice-option" data-sides="12">d12</button>
-    <button class="dice-option" data-sides="20">d20</button>
-    <button class="dice-option" data-sides="100">d100</button>
+                <button class="dice-option" data-sides="4">d4</button>
+                <button class="dice-option" data-sides="6">d6</button>
+                <button class="dice-option" data-sides="8">d8</button>
+                <button class="dice-option" data-sides="10">d10</button>
+                <button class="dice-option" data-sides="12">d12</button>
+                <button class="dice-option" data-sides="20">d20</button>
+                <button class="dice-option" data-sides="100">d100</button>
 
-</div>
+            </div>
 
-<div class="dice-visual" id="diceVisual">
+            <div class="dice-visual" id="diceVisual">
 
-    <div class="dice-result" id="diceResult">
-        ?
-    </div>
+                <div class="dice-result" id="diceResult">
+                    ?
+                </div>
 
-</div>
+            </div>
 
-    <button class="roll-button" id="rollDice">
-        ROLL
-    </button>
+            <button class="roll-button" id="rollDice">
+                ROLL
+            </button>
 
-</section>
+        </section>
+
+
+        <!-- TAROT SCREEN -->
+
+        <section class="tarot-screen" id="tarotScreen">
+
+            <button class="back-button" id="backFromTarot">
+                ← Back
+            </button>
+
+            <h2>TAROT</h2>
+
+            <div class="tarot-card" id="tarotCard">
+              <div class="tarot-card__content">
+                <span class="tarot-card__name" id="tarotName">
+                  ?
+                </span>
+              </div>
+             </div>
+
+            <button class="roll-button" id="drawCard">
+                DRAW A CARD
+            </button>
+
+        </section>
+
 
     </main>
 
