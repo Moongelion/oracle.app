@@ -1,0 +1,264 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #11100f;
+    color: #e8dfd2;
+
+    font-family: Georgia, serif;
+}
+
+.app {
+    width: min(900px, 90%);
+    text-align: center;
+}
+
+.app__title {
+    font-size: 4rem;
+    letter-spacing: 0.4rem;
+}
+
+.app__subtitle {
+    margin-top: 10px;
+
+    color: #9c8d7c;
+
+    font-size: 1.1rem;
+    letter-spacing: 0.2rem;
+}
+
+/*_________MENU_____*/
+
+.menu {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+
+    margin-top: 70px;
+}
+
+.menu__button {
+    width: 220px;
+    height: 220px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+
+    border: 1px solid #5c5146;
+    border-radius: 8px;
+
+    background: #191715;
+    color: #e8dfd2;
+
+    font-family: Georgia, serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.2rem;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease;
+}
+
+.menu__button:hover {
+    transform: translateY(-8px);
+
+    border-color: #a58f72;
+
+    background: #211e1a;
+}
+
+.menu__icon {
+    font-size: 4rem;
+}
+
+/*______DICE BUTTONS____*/
+
+.dice-screen {
+    display: none;
+
+    margin-top: 40px;
+}
+
+.dice-screen h2 {
+    margin-top: 10px;
+
+    font-size: 2rem;
+    font-weight: normal;
+
+    letter-spacing: 0.5rem;
+
+    color: #c9b79f;
+}
+.dice-result {
+    margin: 50px 0;
+
+    font-size: 7rem;
+    font-weight: bold;
+}
+
+.roll-button {
+    min-width: 180px;
+
+    padding: 15px 35px;
+
+    border: 1px solid #8d7960;
+    border-radius: 4px;
+
+    background: transparent;
+    color: #e8dfd2;
+
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    letter-spacing: 0.25rem;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.2s ease;
+}
+
+.roll-button:hover {
+    background: #e8dfd2;
+    color: #191715;
+
+    transform: translateY(-2px);
+}
+
+.roll-button:disabled {
+    opacity: 0.5;
+    cursor: default;
+
+    transform: none;
+}
+
+.back-button {
+    margin-bottom: 40px;
+
+    border: none;
+    background: transparent;
+
+    color: #9c8d7c;
+
+    font-family: Georgia, serif;
+    font-size: 1rem;
+
+    cursor: pointer;
+}
+
+.back-button:hover {
+    color: #e8dfd2;
+}
+
+.dice-options {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    max-width: 500px;
+    margin: 30px auto;
+}
+
+.dice-option {
+    width: 60px;
+    height: 40px;
+
+    border: 1px solid #5c5146;
+    border-radius: 4px;
+
+    background: #191715;
+    color: #e8dfd2;
+
+    font-family: Georgia, serif;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.dice-option:hover {
+    border-color: #a58f72;
+}
+
+.dice-option.selected {
+    border-color: #c9aa7a;
+    background: #2a2520;
+}
+
+.dice-visual.rolling {
+    animation: diceRoll 0.12s infinite;
+}
+
+@keyframes diceRoll {
+
+    0% {
+        transform: rotate(-6deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(6deg) scale(1.08);
+    }
+
+    100% {
+        transform: rotate(-6deg) scale(1);
+    }
+
+}
+
+.dice-visual {
+    width: 180px;
+    height: 180px;
+
+    margin: 40px auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #211e1a;
+
+    border: 1px solid #8d7960;
+
+    clip-path: polygon(
+        50% 0%,
+        93% 25%,
+        93% 75%,
+        50% 100%,
+        7% 75%,
+        7% 25%
+    );
+
+    box-shadow:
+        0 0 30px rgba(165, 143, 114, 0.08);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.dice-result {
+    margin: 0;
+
+    font-size: 4.5rem;
+    font-weight: bold;
+
+    color: #e8dfd2;
+}

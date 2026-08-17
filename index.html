@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Oracle</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app">
+
+        <h1 class="app__title">ORACLE</h1>
+
+        <p class="app__subtitle">
+            Dice & Tarot
+        </p>
+
+        <section class="menu">
+
+            <button class="menu__button" id="diceButton">
+                <span class="menu__icon">🎲</span>
+                <span>DICE</span>
+            </button>
+
+            <button class="menu__button" id="tarotButton">
+                <span class="menu__icon">🃏</span>
+                <span>TAROT</span>
+            </button>
+
+        </section>
+
+        <section class="dice-screen" id="diceScreen">
+
+    <button class="back-button" id="backFromDice">
+        ← Back
+    </button>
+
+<h2 id="diceTitle">D20</h2>
+
+<div class="dice-options">
+
+    <button class="dice-option" data-sides="4">d4</button>
+    <button class="dice-option" data-sides="6">d6</button>
+    <button class="dice-option" data-sides="8">d8</button>
+    <button class="dice-option" data-sides="10">d10</button>
+    <button class="dice-option" data-sides="12">d12</button>
+    <button class="dice-option" data-sides="20">d20</button>
+    <button class="dice-option" data-sides="100">d100</button>
+
+</div>
+
+<div class="dice-visual" id="diceVisual">
+
+    <div class="dice-result" id="diceResult">
+        ?
+    </div>
+
+</div>
+
+    <button class="roll-button" id="rollDice">
+        ROLL
+    </button>
+
+</section>
+
+    </main>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
