@@ -264,56 +264,120 @@ body {
 }
 
 /* ____TAROT_____*/ 
+
 .tarot-screen {
     display: none;
-
     margin-top: 40px;
 }
 
 /*___TAROT CARDS___*/
 
 .tarot-card {
-    width: 220px;
-    height: 380px;
+    width: 260px;
+    height: 430px;
 
     margin: 40px auto;
+
+    perspective: 1000px;
+}
+.tarot-card__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s ease;
+    transform-style: preserve-3d;
+}
+
+/* CARD FACES */
+
+.tarot-card__front,
+.tarot-card__back {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    border: 1px solid #8d7960;
+    backface-visibility: hidden;
+
+    border: 1px solid #5c5146;
     border-radius: 8px;
 
+    overflow: hidden;
+}
+
+/* CARD BACK */
+
+.tarot-card__back {
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #211e1a,
+            #211e1a 10px,
+            #29251f 10px,
+            #29251f 20px
+        );
+
+    color: #c9b79f;
+
+    font-size: 1rem;
+    letter-spacing: 0.3rem;
+}
+
+/* CARD FRONT */
+
+.tarot-card__front {
     background: #211e1a;
 
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.4);
+    transform: rotateY(180deg);
 
-    transition:
-        transform 0.5s ease,
-        box-shadow 0.5s ease;
-}
-
-.tarot-card__content {
-    display: flex;
     flex-direction: column;
 
-    align-items: center;
+    justify-content: flex-start;
 
-    gap: 20px;
+    gap: 8px;
 
-    padding: 25px;
-
-    text-align: center;
+    padding: 8px;
 }
 
+/* CARD IMAGE */
+
+.tarot-card__image {
+    width: 90%;
+    height: 355px;
+
+    object-fit: contain;
+
+    display: none;
+}
+
+/* CARD NAME */
+
 .tarot-card__name {
+    margin-top: auto;
+    margin-bottom: 8px;
+
     font-size: 1.5rem;
 
     letter-spacing: 0.15rem;
 
     color: #e8dfd2;
+
+    text-align: center;
+}
+/* FLIP */
+
+.tarot-card.flipped .tarot-card__inner {
+    transform: rotateY(180deg);
+}
+
+.tarot-card.reset .tarot-card__inner {
+    transition: none;
 }
 
 .tarot-card.drawn {

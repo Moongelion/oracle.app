@@ -94,114 +94,137 @@ const tarotDeck = [
     {
         name: "The Fool",
         arcana: "Major Arcana",
-        number: 0
+        number: 0,
+        image: "thefool.png"
     },
     {
         name: "The Magician",
         arcana: "Major Arcana",
-        number: 1
+        number: 1,
+        image: "themagician.png"
     },
     {
         name: "The High Priestess",
         arcana: "Major Arcana",
-        number: 2
+        number: 2,
+        image: "highpriestess.png"
     },
     {
         name: "The Empress",
         arcana: "Major Arcana",
-        number: 3
+        number: 3,
+        image: "theempress.png"
     },
     {
         name: "The Emperor",
         arcana: "Major Arcana",
-        number: 4
+        number: 4,
+        image: "theemperor.png"
     },
     {
         name: "The Hierophant",
         arcana: "Major Arcana",
-        number: 5
+        number: 5,
+        image: "sumo.png"
     },
     {
         name: "The Lovers",
         arcana: "Major Arcana",
-        number: 6
+        number: 6,
+        image: "thelovers.png"
     },
     {
         name: "The Chariot",
         arcana: "Major Arcana",
-        number: 7
+        number: 7,
+        image: "thechariot.png"
     },
     {
         name: "Strength",
         arcana: "Major Arcana",
-        number: 8
+        number: 8,
+        image: "strength.png"
     },
     {
         name: "The Hermit",
         arcana: "Major Arcana",
-        number: 9
+        number: 9,
+        image: "thehermit.png"
     },
     {
         name: "Wheel of Fortune",
         arcana: "Major Arcana",
-        number: 10
+        number: 10,
+        image: "thefortune.png"
     },
     {
         name: "Justice",
         arcana: "Major Arcana",
-        number: 11
+        number: 11,
+        image: "thejustice.png"
     },
     {
         name: "The Hanged Man",
         arcana: "Major Arcana",
-        number: 12
+        number: 12,
+        image: "thehangedman.png"
     },
     {
         name: "Death",
         arcana: "Major Arcana",
-        number: 13
+        number: 13,
+        image: "death.png"
     },
     {
         name: "Temperance",
         arcana: "Major Arcana",
-        number: 14
+        number: 14,
+        image: "temperance.png"
     },
     {
         name: "The Devil",
         arcana: "Major Arcana",
-        number: 15
+        number: 15,
+        image: "thedevil.png"
     },
     {
         name: "The Tower",
         arcana: "Major Arcana",
-        number: 16
+        number: 16,
+        image: "thetower.png"
     },
     {
         name: "The Star",
         arcana: "Major Arcana",
-        number: 17
+        number: 17,
+        image: "thestar.png"
     },
     {
         name: "The Moon",
         arcana: "Major Arcana",
-        number: 18
+        number: 18,
+        image: "themoon.png"
     },
     {
         name: "The Sun",
         arcana: "Major Arcana",
-        number: 19
+        number: 19,
+        image: "thesun.png"
     },
     {
         name: "Judgement",
         arcana: "Major Arcana",
-        number: 20
+        number: 20,
+        image: "judgement.png"
     },
     {
         name: "The World",
         arcana: "Major Arcana",
-        number: 21
+        number: 21,
+        image: "theworld.png"
     }
 ];
+
 
 const suits = [
     "Wands",
@@ -246,6 +269,7 @@ const tarotScreen = document.querySelector("#tarotScreen");
 const backFromTarot = document.querySelector("#backFromTarot");
 const drawCard = document.querySelector("#drawCard");
 const tarotName = document.querySelector("#tarotName");
+const tarotImage = document.querySelector("#tarotImage");
 const tarotCard = document.querySelector("#tarotCard");
 
 tarotButton.addEventListener("click", () => {
@@ -257,6 +281,11 @@ tarotButton.addEventListener("click", () => {
 
 backFromTarot.addEventListener("click", () => {
 
+    tarotCard.classList.add("reset");
+    tarotCard.classList.remove("flipped");
+
+    tarotName.textContent = "?";
+
     tarotScreen.style.display = "none";
     menu.style.display = "flex";
 
@@ -264,7 +293,10 @@ backFromTarot.addEventListener("click", () => {
 
 drawCard.addEventListener("click", () => {
 
-    tarotCard.classList.remove("drawn");
+    tarotCard.classList.add("reset");
+    tarotCard.classList.remove("flipped");
+
+    void tarotCard.offsetWidth;
 
     const randomIndex =
         Math.floor(Math.random() * tarotDeck.length);
@@ -273,8 +305,22 @@ drawCard.addEventListener("click", () => {
 
     tarotName.textContent = card.name;
 
+    if (card.image) {
+
+        tarotImage.src = `assets/tarot/${card.image}`;
+        tarotImage.alt = card.name;
+        tarotImage.style.display = "block";
+
+    } else {
+
+        tarotImage.style.display = "none";
+
+    }
+
+    tarotCard.classList.remove("reset");
+
     void tarotCard.offsetWidth;
 
-    tarotCard.classList.add("drawn");
+    tarotCard.classList.add("flipped");
 
 });
