@@ -32,7 +32,7 @@ A minimalist web application for random dice rolls and Tarot card draws.
 
 ## Live Demo
 
-Coming soon.
+https://moongelion.github.io/oracle.app/
 
 ## Status
 
