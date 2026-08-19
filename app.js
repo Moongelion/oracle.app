@@ -250,19 +250,38 @@ const ranks = [
     "King"
 ];
 
+const minorArcanaImages = {
+    Wands: {
+        Ace: "asofwands.png",
+        Two: "2ofwands.png",
+        Three: "3ofwands.png",
+        Four: "4ofwands.png",
+        Five: "5ofwands.png",
+        Six: "6ofwands.png",
+        Seven: "7ofwands.png",
+        Eight: "8ofwands.png",
+        Nine: "9ofwands.png",
+        Ten: "10ofwands.png",
+        Page: "pageofwands.png",
+        Knight: "knightofwands.png",
+        Queen: "queenofwands.png",
+        King: "kingofwands.png"
+    }
+};
+
 suits.forEach((suit) => {
 
     ranks.forEach((rank) => {
 
         tarotDeck.push({
             name: `${rank} of ${suit}`,
-            arcana: "Minor Arcana"
+            arcana: "Minor Arcana",
+            image: minorArcanaImages[suit]?.[rank] || null
         });
 
     });
 
 });
-
 /*______TAROT SCREEN______*/
 
 const tarotScreen = document.querySelector("#tarotScreen");
