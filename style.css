@@ -25,12 +25,14 @@ body {
 .app__title {
     font-size: 4rem;
     letter-spacing: 0.4rem;
+    color: #e8dfd2;
+    text-shadow: 0 0 25px rgba(184, 154, 201, 0.08);
 }
 
 .app__subtitle {
     margin-top: 10px;
 
-    color: #9c8d7c;
+    color: #b09aaf;
 
     font-size: 1.1rem;
     letter-spacing: 0.2rem;
@@ -41,7 +43,7 @@ body {
 .menu {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 50px;
 
     margin-top: 70px;
 }
@@ -55,36 +57,54 @@ body {
     justify-content: center;
     align-items: center;
 
-    gap: 20px;
+    gap: 24px;
 
-    border: 1px solid #5c5146;
-    border-radius: 8px;
+    border: 1px solid #6b5a48;
+    border-radius: 2px;
 
-    background: #191715;
+    background: #151312;
+    
+    box-shadow:
+        0 0 30px rgba(80, 45, 100, 0.05);
+    
     color: #e8dfd2;
 
     font-family: Georgia, serif;
-    font-size: 1.2rem;
-    letter-spacing: 0.2rem;
+    font-size: 1.05rem;
+    letter-spacing: 0.3rem;
 
     cursor: pointer;
 
     transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        background 0.3s ease;
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
 .menu__button:hover {
     transform: translateY(-8px);
 
-    border-color: #a58f72;
+    border-color: #b89ac9;
 
-    background: #211e1a;
+    background: #171417;
+
+    box-shadow:
+        0 0 35px rgba(184, 154, 201, 0.08);
+}
+
+.menu__button:hover .menu__icon {
+    color: #c9aa7a;
 }
 
 .menu__icon {
     font-size: 4rem;
+    color: #b89ac9;
+    
+}
+
+#diceButton .menu__icon {
+     transform: translateY(6px);
 }
 
 /*______DICE BUTTONS____*/
@@ -93,18 +113,23 @@ body {
     display: none;
 
     margin-top: 40px;
+
+    animation: screenReveal 0.5s ease;
 }
 
 .dice-screen h2 {
     margin-top: 10px;
 
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: normal;
 
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.55rem;
 
-    color: #c9b79f;
+    color: #b89ac9;
+
+    text-transform: uppercase;
 }
+
 .dice-result {
     margin: 50px 0;
 
@@ -181,17 +206,37 @@ body {
     width: 60px;
     height: 40px;
 
-    border: 1px solid #5c5146;
-    border-radius: 4px;
+    border: 1px solid #6b5a48;
+    border-radius: 2px;
 
-    background: #191715;
-    color: #e8dfd2;
+    background: #151312;
+    color: #b09aaf;
 
     font-family: Georgia, serif;
+    letter-spacing: 0.08rem;
 
     cursor: pointer;
 
-    transition: 0.2s ease;
+    transition:
+        border-color 0.3s ease,
+        color 0.3s ease,
+        background 0.3s ease;
+}
+
+.dice-option:hover {
+    border-color: #b89ac9;
+
+    color: #e8dfd2;
+
+    background: #171417;
+}
+
+.dice-option.selected {
+    border-color: #c9aa7a;
+
+    background: #211c20;
+
+    color: #e8dfd2;
 }
 
 .dice-option:hover {
@@ -203,71 +248,184 @@ body {
     background: #2a2520;
 }
 
-.dice-visual.rolling {
-    animation: diceRoll 0.12s infinite;
-}
+/* _____ D20 _____ */
 
-@keyframes diceRoll {
+.dice-image {
+    width: 300px;
+    height: 300px;
 
-    0% {
-        transform: rotate(-6deg) scale(1);
-    }
-
-    50% {
-        transform: rotate(6deg) scale(1.08);
-    }
-
-    100% {
-        transform: rotate(-6deg) scale(1);
-    }
-
+    object-fit: contain;
+    display: block;
 }
 
 .dice-visual {
-    width: 180px;
-    height: 180px;
+    position: relative;
 
-    margin: 40px auto;
+    width: 240px;
+    height: 240px;
+
+    margin: 25px auto 35px;
 
     display: flex;
     justify-content: center;
     align-items: center;
-
-    background: #211e1a;
-
-    border: 1px solid #8d7960;
-
-    clip-path: polygon(
-        50% 0%,
-        93% 25%,
-        93% 75%,
-        50% 100%,
-        7% 75%,
-        7% 25%
-    );
-
-    box-shadow:
-        0 0 30px rgba(165, 143, 114, 0.08);
-
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
 }
 
+
+/* _____ D20 SHAPE _____ */
+
+.dice-shape {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+}
+
+
+/* _____ D20 FACES _____ */
+
+.dice-face {
+    stroke: #8f6ba0;
+    stroke-width: 1;
+    stroke-linejoin: round;
+}
+
+.face-top {
+    fill: #33213e;
+}
+
+.face-left-top {
+    fill: #24182d;
+}
+
+.face-right-top {
+    fill: #2c1d37;
+}
+
+.face-left-bottom {
+    fill: #1a121f;
+}
+
+.face-right-bottom {
+    fill: #211627;
+}
+
+
+/* _____ INNER FACETS _____ */
+
+.dice-facet {
+    fill: rgba(184, 154, 201, 0.08);
+
+    stroke: rgba(184, 154, 201, 0.35);
+
+    stroke-width: 0.7;
+}
+
+
+/* _____ GOLD EDGES _____ */
+
+.dice-edge {
+    fill: none;
+
+    stroke: #a98a63;
+
+    stroke-width: 1.2;
+
+    stroke-linejoin: round;
+
+    opacity: 0.9;
+}
+
+
+/* _____ LIGHT REFLECTION _____ */
+
+.dice-shine {
+    fill: #d9c3e5;
+
+    opacity: 0;
+
+    filter:
+        drop-shadow(0 0 6px rgba(216, 190, 230, 0.8));
+}
+
+
+/* _____ NUMBER _____ */
+
 .dice-result {
+    position: absolute;
+
+    top: 45%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 2;
+
     margin: 0;
 
-    font-size: 4.5rem;
+    font-size: 3rem;
     font-weight: bold;
 
     color: #e8dfd2;
+
+    text-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.65);
+}
+
+/* _____ ROLL REFLECTION _____ */
+
+.dice-visual.rolling .dice-shine {
+    animation: diceReflection 0.9s ease-in-out;
+}
+
+@keyframes diceReflection {
+
+    0% {
+        opacity: 0;
+        transform: translateX(-8px);
+    }
+
+    20% {
+        opacity: 0.15;
+    }
+
+    50% {
+        opacity: 0.75;
+        transform: translateX(8px);
+    }
+
+    75% {
+        opacity: 0.25;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(14px);
+    }
+
 }
 
 /* ____TAROT_____*/ 
 
 .tarot-screen {
     display: none;
+
     margin-top: 40px;
+
+    animation: screenReveal 0.5s ease;
+}
+
+.tarot-screen h2 {
+    font-size: 1.8rem;
+    font-weight: normal;
+
+    letter-spacing: 0.55rem;
+
+    color: #b89ac9;
+
+    text-transform: uppercase;
 }
 
 /*___TAROT CARDS___*/
@@ -332,7 +490,7 @@ body {
 /* CARD FRONT */
 
 .tarot-card__front {
-    background: #211e1a;
+    background: #18141a;
 
     transform: rotateY(180deg);
 
@@ -394,6 +552,20 @@ body {
     100% {
         opacity: 1;
         transform: translateY(0) scale(1);
+    }
+
+}
+
+@keyframes screenReveal {
+
+    0% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 
 }

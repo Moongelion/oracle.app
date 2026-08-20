@@ -17,6 +17,7 @@ const diceTitle = document.querySelector("#diceTitle");
 const diceOptions = document.querySelectorAll(".dice-option");
 
 let selectedDice = 20;
+
 document.querySelector('[data-sides="20"]').classList.add("selected");
 
 diceOptions.forEach((option) => {
@@ -56,6 +57,11 @@ backFromDice.addEventListener("click", () => {
 rollDice.addEventListener("click", () => {
 
     rollDice.disabled = true;
+
+    diceVisual.classList.remove("entering");
+    diceVisual.classList.remove("rolling");
+
+    void diceVisual.offsetWidth;
 
     diceVisual.classList.add("rolling");
 
@@ -305,10 +311,16 @@ backFromTarot.addEventListener("click", () => {
 
     tarotName.textContent = "?";
 
+    tarotImage.src = "";
+    tarotImage.alt = "";
+    tarotImage.style.display = "none";
+
     tarotScreen.style.display = "none";
     menu.style.display = "flex";
 
 });
+
+let lastTarotIndex = -1;
 
 drawCard.addEventListener("click", () => {
 
@@ -317,8 +329,14 @@ drawCard.addEventListener("click", () => {
 
     void tarotCard.offsetWidth;
 
-    const randomIndex =
+let randomIndex;
+
+do {
+    randomIndex =
         Math.floor(Math.random() * tarotDeck.length);
+} while (randomIndex === lastTarotIndex);
+
+lastTarotIndex = randomIndex;
 
     const card = tarotDeck[randomIndex];
 
@@ -343,3 +361,4 @@ drawCard.addEventListener("click", () => {
     tarotCard.classList.add("flipped");
 
 });
+

@@ -25,15 +25,14 @@
 
         <section class="menu">
 
-            <button class="menu__button" id="diceButton">
-                <span class="menu__icon">🎲</span>
-                <span>DICE</span>
-            </button>
-
-            <button class="menu__button" id="tarotButton">
-                <span class="menu__icon">🃏</span>
-                <span>TAROT</span>
-            </button>
+          <button class="menu__button" id="diceButton">
+            <span class="menu__icon">◇</span>
+            <span>DICE</span>
+          </button>
+          <button class="menu__button" id="tarotButton">
+            <span class="menu__icon">✦</span>
+            <span>TAROT</span>
+          </button>
 
         </section>
 
@@ -62,18 +61,19 @@
                 <button class="dice-option" data-sides="100">d100</button>
 
             </div>
-
             <div class="dice-visual" id="diceVisual">
-
-                <div class="dice-result" id="diceResult">
-                    ?
-                </div>
-
-            </div>
-
-            <button class="roll-button" id="rollDice">
+              <img
+                class="dice-image"
+                src="assets/dice/d20img.png"
+                alt="Dice">
+          <div class="dice-result" id="diceResult">
+            ?
+          </div>
+        </div>
+        
+        <button class="roll-button" id="rollDice">
                 ROLL
-            </button>
+        </button>
 
         </section>
 
