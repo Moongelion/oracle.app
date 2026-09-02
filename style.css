@@ -256,6 +256,9 @@ body {
 
     object-fit: contain;
     display: block;
+    
+    position: relative;
+    z-index: 0;
 }
 
 .dice-visual {
@@ -270,6 +273,43 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.dice-visual.rolling {
+    animation: diceGlow 0.9s ease-in-out;
+}
+
+@keyframes diceGlow {
+
+    0% {
+        filter:
+            drop-shadow(0 0 8px rgba(150, 80, 210, 0.15))
+            drop-shadow(0 0 15px rgba(120, 50, 180, 0.10));
+    }
+
+    30% {
+        filter:
+            drop-shadow(0 0 22px rgba(165, 85, 230, 0.55))
+            drop-shadow(0 0 45px rgba(130, 55, 200, 0.35));
+    }
+
+    50% {
+        filter:
+            drop-shadow(0 0 32px rgba(175, 95, 240, 0.75))
+            drop-shadow(0 0 65px rgba(135, 60, 210, 0.50));
+    }
+
+    70% {
+        filter:
+            drop-shadow(0 0 22px rgba(165, 85, 230, 0.50))
+            drop-shadow(0 0 42px rgba(130, 55, 200, 0.30));
+    }
+
+    100% {
+        filter:
+            drop-shadow(0 0 8px rgba(150, 80, 210, 0.15));
+    }
+}
+
 
 
 /* _____ D20 SHAPE _____ */
@@ -342,12 +382,34 @@ body {
 /* _____ LIGHT REFLECTION _____ */
 
 .dice-shine {
-    fill: #d9c3e5;
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 1;
+    pointer-events: none;
 
     opacity: 0;
 
-    filter:
-        drop-shadow(0 0 6px rgba(216, 190, 230, 0.8));
+    border-radius: 50%;
+
+    background: radial-gradient(
+        ellipse at center,
+        rgba(190, 80, 255, 0.75) 0%,
+        rgba(170, 60, 245, 0.45) 25%,
+        rgba(140, 40, 220, 0.20) 45%,
+        transparent 72%
+    );
+
+    filter: blur(10px);
+
+    mix-blend-mode: screen;
 }
 
 
@@ -384,27 +446,33 @@ body {
 
     0% {
         opacity: 0;
-        transform: translateX(-8px);
+
+        transform:
+            translate(-50%, -50%)
+            translate(-35px, 35px)
+            scale(0.7);
     }
 
-    20% {
-        opacity: 0.15;
+    30% {
+        opacity: 0.45;
     }
 
     50% {
-        opacity: 0.75;
-        transform: translateX(8px);
+        opacity: 0.7;
     }
 
-    75% {
-        opacity: 0.25;
+    70% {
+        opacity: 0.35;
     }
 
     100% {
         opacity: 0;
-        transform: translateX(14px);
-    }
 
+        transform:
+            translate(-50%, -50%)
+            translate(35px, -35px)
+            scale(1.1);
+    }
 }
 
 /* ____TAROT_____*/ 
@@ -431,11 +499,10 @@ body {
 /*___TAROT CARDS___*/
 
 .tarot-card {
+    position: relative;
     width: 260px;
     height: 430px;
-
     margin: 40px auto;
-
     perspective: 1000px;
 }
 .tarot-card__inner {
@@ -531,29 +598,72 @@ body {
 /* FLIP */
 
 .tarot-card.flipped .tarot-card__inner {
-    transform: rotateY(180deg);
+    animation: tarotReveal 1.2s ease-out forwards;
 }
 
-.tarot-card.reset .tarot-card__inner {
-    transition: none;
-}
-
-.tarot-card.drawn {
-    animation: cardReveal 0.5s ease;
-}
-
-@keyframes cardReveal {
-
+@keyframes tarotReveal {
     0% {
-        opacity: 0;
-        transform: translateY(15px) scale(0.95);
+        transform: rotateY(0deg) translateY(10px);
+    }
+
+    45% {
+        transform: rotateY(180deg) translateY(-12px);
+    }
+
+    75% {
+        transform: rotateY(180deg) translateY(3px);
     }
 
     100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: rotateY(180deg) translateY(0);
+    }
+}
+
+.tarot-card__front {
+    position: relative;
+    overflow: hidden;
+}
+
+.tarot-card__front::after {
+    content: "";
+    position: absolute;
+    top: -20%;
+    left: -60%;
+
+    width: 45%;
+    height: 140%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(190, 110, 255, 0.35),
+        transparent
+    );
+
+    filter: blur(8px);
+    transform: rotate(15deg);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tarot-card.flipped .tarot-card__front::after {
+    animation: tarotShine 0.9s ease-out 0.45s forwards;
+}
+
+@keyframes tarotShine {
+    0% {
+        left: -60%;
+        opacity: 0;
     }
 
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 120%;
+        opacity: 0;
+    }
 }
 
 @keyframes screenReveal {
@@ -568,4 +678,177 @@ body {
         transform: translateY(0);
     }
 
+}
+
+.tarot-particles {
+    position: absolute;
+    inset: -80px;
+    pointer-events: none;
+    z-index: 50;
+}
+
+.particle {
+    position: absolute;
+    display: block;
+
+    color: #b86cff;
+    font-size: 1.5rem;
+
+    opacity: 0;
+
+    text-shadow:
+        0 0 6px rgba(190, 100, 255, 0.9),
+        0 0 15px rgba(150, 50, 255, 0.7);
+}
+
+/* posiciones */
+
+.p1 {
+    top: 5%;
+    left: 10%;
+}
+
+.p2 {
+    top: 20%;
+    right: 5%;
+}
+
+.p3 {
+    bottom: 25%;
+    left: 5%;
+}
+
+.p4 {
+    bottom: 8%;
+    right: 12%;
+}
+
+.p5 {
+    top: 2%;
+    left: 48%;
+}
+
+
+/* aparecen solamente durante el reveal */
+
+.tarot-card.flipped .p1 {
+    animation: particleOne 1s ease-out 0.15s;
+}
+
+.tarot-card.flipped .p2 {
+    animation: particleTwo 1s ease-out 0.25s;
+}
+
+.tarot-card.flipped .p3 {
+    animation: particleThree 1s ease-out 0.2s;
+}
+
+.tarot-card.flipped .p4 {
+    animation: particleFour 1s ease-out 0.3s;
+}
+
+.tarot-card.flipped .p5 {
+    animation: particleFive 1s ease-out 0.1s;
+}
+
+
+@keyframes particleOne {
+    0% {
+        opacity: 0;
+        transform: translate(0, 15px) scale(0.5);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-10px, -25px) scale(1.1);
+    }
+}
+
+@keyframes particleTwo {
+    0% {
+        opacity: 0;
+        transform: translate(0, 15px) scale(0.5);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(15px, -20px) scale(1.1);
+    }
+}
+
+@keyframes particleThree {
+    0% {
+        opacity: 0;
+        transform: translate(0, -10px) scale(0.5);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-15px, 20px) scale(1.1);
+    }
+}
+
+@keyframes particleFour {
+    0% {
+        opacity: 0;
+        transform: translate(0, -10px) scale(0.5);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(15px, 25px) scale(1.1);
+    }
+}
+
+@keyframes particleFive {
+    0% {
+        opacity: 0;
+        transform: translateY(15px) scale(0.5);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-25px) scale(1.1);
+    }
+}
+
+/* Particle colours */
+
+.p1,
+.p3,
+.p5 {
+    color: #c9aa7a;
+
+    text-shadow:
+        0 0 6px rgba(201, 170, 122, 0.9),
+        0 0 15px rgba(201, 170, 122, 0.7);
+}
+
+.p2,
+.p4 {
+    color: #b86cff;
+
+    text-shadow:
+        0 0 6px rgba(190, 100, 255, 0.9),
+        0 0 15px rgba(150, 50, 255, 0.7);
 }
