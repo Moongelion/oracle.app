@@ -1,0 +1,17 @@
+{
+    "name": "Oracle",
+    "short_name": "Oracle",
+    "description": "A minimalist dice and Tarot application.",
+    "start_url": "./",
+    "display": "standalone",
+    "background_color": "#11100f",
+    "theme_color": "#11100f",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "assets/favicon/icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

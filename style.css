@@ -26,16 +26,26 @@ body {
     font-size: 4rem;
     letter-spacing: 0.4rem;
     color: #e8dfd2;
-    text-shadow: 0 0 25px rgba(184, 154, 201, 0.08);
+
+    text-shadow:
+        0 0 15px rgba(184, 154, 201, 0.08),
+        0 0 35px rgba(150, 80, 210, 0.05);
+}
+
+.ornament {
+    margin-top: 12px;
+    color: #b89ac9;
+    font-size: 0.8rem;
+    letter-spacing: 0.3rem;
+    opacity: 0.7;
 }
 
 .app__subtitle {
     margin-top: 10px;
-
     color: #b09aaf;
-
     font-size: 1.1rem;
-    letter-spacing: 0.2rem;
+    letter-spacing: 0.25rem;
+    opacity: 0.9;
 }
 
 /*_________MENU_____*/
@@ -82,6 +92,36 @@ body {
     color 0.3s ease;
 }
 
+.menu__button {
+    position: relative;
+    overflow: hidden;
+}
+
+.menu__button::after {
+    content: "";
+    position: absolute;
+
+    top: -100%;
+    left: -30%;
+
+    width: 30%;
+    height: 300%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(184, 154, 201, 0.08),
+        transparent
+    );
+
+    transform: rotate(20deg);
+    transition: left 0.7s ease;
+}
+
+.menu__button:hover::after {
+    left: 120%;
+}
+
 .menu__button:hover {
     transform: translateY(-8px);
 
@@ -95,16 +135,38 @@ body {
 
 .menu__button:hover .menu__icon {
     color: #c9aa7a;
+
+    text-shadow:
+        0 0 8px rgba(201, 170, 122, 0.5),
+        0 0 18px rgba(184, 154, 201, 0.3);
 }
 
 .menu__icon {
     font-size: 4rem;
     color: #b89ac9;
-    
+
+    transition:
+        color 0.3s ease,
+        text-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+.menu__button:hover .menu__icon {
+    color: #c9aa7a;
+
+    text-shadow:
+        0 0 8px rgba(201, 170, 122, 0.5),
+        0 0 20px rgba(184, 154, 201, 0.3);
+
+    transform: scale(1.06);
 }
 
 #diceButton .menu__icon {
-     transform: translateY(6px);
+    transform: translateY(6px);
+}
+
+#diceButton:hover .menu__icon {
+    transform: translateY(6px) scale(1.06);
 }
 
 /*______DICE BUTTONS____*/
@@ -130,41 +192,98 @@ body {
     text-transform: uppercase;
 }
 
+.dice-screen h2,
+.tarot-screen h2 {
+    text-shadow:
+        0 0 12px rgba(184, 154, 201, 0.15);
+}
+
 .dice-result {
     margin: 50px 0;
 
     font-size: 7rem;
     font-weight: bold;
 }
+.dice-result.result-pop {
+    animation: resultPop 0.35s ease-out;
+}
+
+@keyframes resultPop {
+    0% {
+        opacity: 0.4;
+        transform: translate(-50%, -50%) scale(0.7);
+        text-shadow: 0 0 0 rgba(180, 80, 255, 0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.15);
+        text-shadow:
+            0 0 10px rgba(190, 90, 255, 0.8),
+            0 0 25px rgba(150, 50, 230, 0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+        text-shadow:
+            0 2px 5px rgba(0, 0, 0, 0.65);
+    }
+}
 
 .roll-button {
     min-width: 180px;
-
     padding: 15px 35px;
-
     border: 1px solid #8d7960;
     border-radius: 4px;
-
     background: transparent;
     color: #e8dfd2;
-
     font-family: Georgia, serif;
     font-size: 1rem;
     letter-spacing: 0.25rem;
-
     cursor: pointer;
+
+    position: relative;
+    overflow: hidden;
 
     transition:
         background 0.3s ease,
         color 0.3s ease,
-        transform 0.2s ease;
+        transform 0.2s ease,
+        box-shadow 0.3s ease;
 }
 
-.roll-button:hover {
-    background: #e8dfd2;
-    color: #191715;
+.back-button:hover {
+    color: #e8dfd2;
+    transform: translateX(-4px);
+    text-shadow: 0 0 10px rgba(184, 154, 201, 0.35);
+}
 
-    transform: translateY(-2px);
+.roll-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(184, 154, 201, 0.18),
+        transparent
+    );
+
+    transition: left 0.5s ease;
+}
+
+.roll-button:hover::before {
+    left: 100%;
+}
+
+.roll-button:active {
+    transform: translateY(0) scale(0.97);
 }
 
 .roll-button:disabled {
@@ -184,6 +303,11 @@ body {
 
     font-family: Georgia, serif;
     font-size: 1rem;
+
+    transition:
+    color 0.3s ease,
+    transform 0.3s ease,
+    text-shadow 0.3s ease;
 
     cursor: pointer;
 }
@@ -232,11 +356,13 @@ body {
 }
 
 .dice-option.selected {
-    border-color: #c9aa7a;
-
+    border-color: #b89ac9;
     background: #211c20;
-
     color: #e8dfd2;
+
+    box-shadow:
+        0 0 10px rgba(184, 154, 201, 0.18),
+        inset 0 0 10px rgba(184, 154, 201, 0.05);
 }
 
 .dice-option:hover {
@@ -246,6 +372,14 @@ body {
 .dice-option.selected {
     border-color: #c9aa7a;
     background: #2a2520;
+}
+
+.dice-option {
+    transition:
+        border-color 0.3s ease,
+        color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 /* _____ D20 _____ */
@@ -435,6 +569,32 @@ body {
     text-shadow:
         0 2px 5px rgba(0, 0, 0, 0.65);
 }
+.dice-result.result-pop {
+    animation: resultPop 0.35s ease-out;
+}
+
+@keyframes resultPop {
+    0% {
+        opacity: 0.4;
+        transform: translate(-50%, -50%) scale(0.7);
+        text-shadow: 0 0 0 rgba(180, 80, 255, 0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.15);
+        text-shadow:
+            0 0 10px rgba(190, 90, 255, 0.8),
+            0 0 25px rgba(150, 50, 230, 0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+        text-shadow:
+            0 2px 5px rgba(0, 0, 0, 0.65);
+    }
+}
 
 /* _____ ROLL REFLECTION _____ */
 
@@ -619,6 +779,7 @@ body {
     }
 }
 
+
 .tarot-card__front {
     position: relative;
     overflow: hidden;
@@ -678,6 +839,34 @@ body {
         transform: translateY(0);
     }
 
+}
+
+.tarot-card.flipped .tarot-card__front {
+    box-shadow:
+        0 0 12px rgba(170, 90, 230, 0.15),
+        0 0 30px rgba(140, 50, 210, 0.08);
+
+    animation: tarotAura 3s ease-in-out infinite;
+}
+
+@keyframes tarotAura {
+    0% {
+        box-shadow:
+            0 0 12px rgba(170, 90, 230, 0.15),
+            0 0 30px rgba(140, 50, 210, 0.08);
+    }
+
+    50% {
+        box-shadow:
+            0 0 18px rgba(180, 90, 240, 0.28),
+            0 0 40px rgba(145, 55, 220, 0.15);
+    }
+
+    100% {
+        box-shadow:
+            0 0 12px rgba(170, 90, 230, 0.15),
+            0 0 30px rgba(140, 50, 210, 0.08);
+    }
 }
 
 .tarot-particles {
@@ -832,6 +1021,34 @@ body {
     }
 }
 
+.tarot-card.flipped .tarot-card__front {
+    box-shadow:
+        0 0 12px rgba(170, 90, 230, 0.15),
+        0 0 30px rgba(140, 50, 210, 0.08);
+
+    animation: tarotAura 3s ease-in-out infinite;
+}
+
+@keyframes tarotAura {
+    0% {
+        box-shadow:
+            0 0 12px rgba(170, 90, 230, 0.15),
+            0 0 30px rgba(140, 50, 210, 0.08);
+    }
+
+    50% {
+        box-shadow:
+            0 0 18px rgba(180, 90, 240, 0.28),
+            0 0 40px rgba(145, 55, 220, 0.15);
+    }
+
+    100% {
+        box-shadow:
+            0 0 12px rgba(170, 90, 230, 0.15),
+            0 0 30px rgba(140, 50, 210, 0.08);
+    }
+}
+
 /* Particle colours */
 
 .p1,
@@ -851,4 +1068,37 @@ body {
     text-shadow:
         0 0 6px rgba(190, 100, 255, 0.9),
         0 0 15px rgba(150, 50, 255, 0.7);
+}
+
+@media (max-width: 600px) {
+    .menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        margin-top: 45px;
+    }
+
+    .menu__button {
+        width: 190px;
+        height: 190px;
+    }
+
+    .app__title {
+        font-size: 3rem;
+    }
+
+    .dice-image {
+        width: 280px;
+        height: 280px;
+    }
+
+    .dice-visual {
+        width: 280px;
+        height: 280px;
+    }
+
+    .tarot-card {
+        width: 230px;
+        height: 380px;
+    }
 }

@@ -83,16 +83,21 @@ rollDice.addEventListener("click", () => {
             const finalResult =
                 Math.floor(Math.random() * selectedDice) + 1;
 
-            diceResult.textContent = finalResult;
+        diceResult.textContent = finalResult;
 
-            diceVisual.classList.remove("rolling");
+        diceResult.classList.remove("result-pop");
+        void diceResult.offsetWidth;
+        diceResult.classList.add("result-pop");
 
-            rollDice.disabled = false;
-        }
+        diceVisual.classList.remove("rolling");
+
+        rollDice.disabled = false;
+                }
 
     }, 80);
 
 });
+
 
 /*______TAROT DECK____*/
 
@@ -362,3 +367,8 @@ lastTarotIndex = randomIndex;
 
 });
 
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js");
+    });
+}
