@@ -367,7 +367,6 @@ lastTarotIndex = randomIndex;
 
   const card = tarotDeck[randomIndex];
   
-  console.log(card);
 
     tarotName.textContent = card.name;
 
@@ -391,7 +390,75 @@ lastTarotIndex = randomIndex;
 
 });
 
-if ("serviceWorker" in navigator) {
+/* _____TOP NAVIGATION_____ */
+
+const topNavLogo = document.querySelector("#sidebarLogo");
+const topNavItems = document.querySelectorAll(".top-nav__item");
+
+const utilityScreens = {
+    utilities: document.querySelector("#utilitiesScreen"),
+    extras: document.querySelector("#extrasScreen"),
+    about: document.querySelector("#aboutScreen"),
+    whatever: document.querySelector("#whateverScreen")
+};
+
+
+function hideAllScreens() {
+
+    menu.style.display = "none";
+    diceScreen.style.display = "none";
+    tarotScreen.style.display = "none";
+
+    Object.values(utilityScreens).forEach((screen) => {
+
+        if (screen) {
+            screen.style.display = "none";
+        }
+
+    });
+
+}
+
+
+function showOracleHome() {
+
+    hideAllScreens();
+
+    menu.style.display = "flex";
+
+}
+
+
+topNavLogo.addEventListener("click", () => {
+
+    showOracleHome();
+
+});
+
+
+topNavItems.forEach((item) => {
+
+    item.addEventListener("click", () => {
+
+        const section = item.dataset.section;
+
+        hideAllScreens();
+
+        const screen = utilityScreens[section];
+
+        if (screen) {
+            screen.style.display = "block";
+        }
+
+    });
+
+});
+
+if (
+    "serviceWorker" in navigator &&
+    location.hostname !== "127.0.0.1" &&
+    location.hostname !== "localhost"
+) {
     window.addEventListener("load", () => {
         navigator.serviceWorker.register("./service-worker.js");
     });
