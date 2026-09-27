@@ -277,8 +277,30 @@ const minorArcanaImages = {
         Knight: "knightofwands.png",
         Queen: "queenofwands.png",
         King: "kingofwands.png"
-    }
+  },
+  
+  Pentacles: { 
+
+        Ace: "asofpentacles.png",
+        Two: "2ofpentacles.png",
+        Three: "3ofpentacles.png",
+        Four: "4ofpentacles.png",
+        Five: "5ofpentacles.png",
+        Six: "6ofpentacles.png",
+        Seven: "7ofpentacles.png",
+        Eight: "8ofpentacles.png",
+        Nine: "9ofpentacles.png",
+        Ten: "10ofpentacles.png",
+        Page: "pageofpentacles.png",
+        Knight: "knightofpentacles.png",
+        Queen: "queenofpentacles.png",
+        King: "kingofpentacles.png"
+
+  }
 };
+
+
+
 
 suits.forEach((suit) => {
 
@@ -343,7 +365,9 @@ do {
 
 lastTarotIndex = randomIndex;
 
-    const card = tarotDeck[randomIndex];
+  const card = tarotDeck[randomIndex];
+  
+  console.log(card);
 
     tarotName.textContent = card.name;
 
